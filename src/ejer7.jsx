@@ -1,22 +1,34 @@
-export function Ejer7(){
-    var nombre=<input type="text" />;
-    var apellidos=<input type="text" />;
+import { useState } from "react";
 
-    function mostrardatos(){
+export function Ejer7() {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const handleGreet = () => {
+      alert(`Hello ${firstName} ${lastName}!`);
+    };
 
-    }
-        return (
-            <div>
-                {nombre}
-                {apellidos}
-                <button onClick={mostrardatos}>Mostrar Datos</button>
-            </div>
-        );
-
-        function mostrardatos() {
-            const nombreValue = document.querySelector('input[type="text"]').value;
-            const apellidosValue = document.querySelectorAll('input[type="text"]')[1].value;
-            alert(`Hola ${nombreValue} ${apellidosValue}`);
-        }
-   
+    return (
+      <>
+        <div>
+          
+          <input
+            type="text"
+            placeholder="First name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <br />
+          <input
+            type="text"
+            placeholder="Last name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <br />
+          <button onClick={handleGreet}>
+            GREET ME
+          </button>
+        </div>
+      </>
+    );
 }
