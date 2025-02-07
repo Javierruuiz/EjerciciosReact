@@ -1,39 +1,60 @@
-import './App.css';
-import React from 'react';
-import {Ejer1} from './ejer1';
-import {Ejer2} from './ejer2';
-import {Ejer3} from './ejer3';
-import {Ejer4} from './ejer4';
-import {Ejer5} from './ejer5';
-import {Ejer6} from './ejer6';
-import {Ejer7} from './ejer7';
-import {Ejer8} from './ejer8';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import {PokemosApi} from './pokemosApi';
+import { Error404 } from './error404';
+import { RutasPrivadas } from './RutasPrivadas';
+import { Landing } from './Landing';
+import { Juego } from './Juego';
+import {Login} from './Login'; 
+import { DetallesPokemons  } from "./DetallesPokemons";
+import { useState } from "react";
+import { useEffect } from "react";
+import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { WinOrLose } from "./winOrLose";
+
+
+
 
 function App() {
-  var lista = ['dog', 'cat', 'chicken', 'cow', 'sheep', 'horse']
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+  });
+},[])
+
   return (
     <>
-    <div>
-    <Ejer1></Ejer1>
-    </div>
-    <div>
-    <Ejer2></Ejer2>
-    </div>
-    <div>
-    <Ejer3 id={1}/> 
-     <Ejer3 id={2}/> 
-     <Ejer3 id={3}/> 
-    </div>
-    <div>
-    <Ejer4></Ejer4>
-    </div>
-    <div>
-    <Ejer5></Ejer5>
-    </div>
-     <Ejer6 lista={lista}></Ejer6>
-     <Ejer7></Ejer7>
-    <Ejer8></Ejer8>
+      <BrowserRouter>
+        <nav>
+          <Link to='/'>Inicio</Link>
+          <Link to='/PokemosApi'> Pokemons</Link>
+          <Link to='/Juego'>Juego</Link>
+          {user ? (
+          <>
+            <p>Bienvenido, {user.displayName ? user.displayName:user.email.split('@')[0]}</p>
+            <Link to='/Login'>Cerrar Sesión</Link>
+          </>
+        ) : 
+        <Link to='/Login'>Login</Link>
+  }
 
+        </nav>
+
+        <Routes>
+          <Route path='/' element={<Landing />} />
+          <Route path='/Login' element={<Login />} />
+
+          <Route element={<RutasPrivadas />}>
+          <Route path="/PokemosApi" element={<PokemosApi />} />
+          <Route path="/DetallesPokemons/:name" element={<DetallesPokemons />} />
+          <Route path='/Juego' element={<Juego />} />
+          </Route>
+          <Route path='/WinOrLose' element={< WinOrLose/>} />
+          <Route path='*' element={<Error404 />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

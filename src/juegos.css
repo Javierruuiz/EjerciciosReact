@@ -1,0 +1,83 @@
+/* Juego.css */
+
+.container {
+      background: -webkit-linear-gradient(90deg, #990036,#000000,#b30056);
+  background: linear-gradient(90deg, #990036,#000000,#b30056);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 400px;
+    margin: 100px auto;
+    color: white;
+  }
+  
+  h2 {
+    color: #E81C01;
+    margin-bottom: 15px;
+  }
+  
+  .card {
+    background: #F09F07;
+    padding: 20px;
+    
+  }
+  
+  .img-fluid {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    background: #F09F07;
+    border-radius: 10px;
+    padding: 10px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .opciones {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  
+  .btn {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+  }
+  
+  .btn-primary {
+    background: #444;
+    color: white;
+    padding: 10px 20px;
+    min-width: 120px;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .btn-primary:hover {
+    background: #333;
+    color: black;
+  }
+  
+  
+  .btn-success {
+    background: #333;
+    color: white;
+  }
+  
+  .btn-success:hover {
+    background: #b6b6b6;
+  }
+  
+  p {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
